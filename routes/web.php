@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 
 //Auth::routes();
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+//Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -36,5 +36,10 @@ Route::middleware(['auth'])->group(function () {
         // Пользователи
         Route::get('/users','UserController@index')->name('user.index');
         Route::get('/users/create','UserController@create')->name('user.create');
+        Route::post('/users/create','UserController@store')->name('user.store');
+        Route::get('/users/delete/{id?}','UserController@delete')->name('user.delete');
+        Route::get('/users/edit/{id?}','UserController@edit')->name('user.edit');
+        Route::post('/users/update','UserController@update')->name('user.update');
+        Route::post('/users/updatepassword','UserController@updatePassword')->name('user.updatepassword');
     });
 });

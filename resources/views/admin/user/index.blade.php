@@ -36,6 +36,11 @@
                             <a class="btn btn-primary" href="{{ route('user.create') }}" role="button">Добавить</a>
                         </div>
                         <div class="card-body">
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -53,7 +58,15 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->role }}</td>
-                                        <td>Редактировать / Удалить</td>
+                                        <td>
+                                            <a href="{{ route('user.edit',[$item->id]) }}">
+                                                Редактировать
+                                            </a>
+                                            /
+                                            <a href="{{ route('user.delete',[$item->id]) }}">
+                                                Удалить
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
